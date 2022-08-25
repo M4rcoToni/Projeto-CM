@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_cliente"
+    tools:context=".Cliente">
+
+    <TextView
+        android:id="@+id/titulo"
+        android:layout_width="183dp"
+        android:layout_height="29dp"
+        android:fontFamily="@font/dm_sans"
+        android:text="Digite o IP"
+        android:textAlignment="center"
+        android:textColor="@color/pretof"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.213" />
+
+    <TextView
+        android:id="@+id/titulo2"
+        android:layout_width="183dp"
+        android:layout_height="29dp"
+        android:fontFamily="@font/dm_sans"
+        android:text="Digite a Mensagem"
+        android:textAlignment="center"
+        android:textColor="@color/pretof"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.482" />
+
+    <TextView
+        android:layout_width="191dp"
+        android:layout_height="27dp"
+        android:fontFamily="@font/dm_sans"
+        android:text="Cliente"
+        android:textAlignment="center"
+        android:textColor="@color/pretof"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.459"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.174" />
+
+    <EditText
+        android:id="@+id/lembrete"
+        android:layout_width="198dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@color/cinzaf"
+        android:fontFamily="@font/dm_sans"
+        android:maxWidth="190dp"
+        android:textAlignment="center"
+        android:textColor="@color/cinzaf"
+        android:textColorLink="@color/pretof"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.257" />
+
+    <EditText
+        android:id="@+id/mensagem_cliente"
+        android:layout_width="198dp"
+        android:layout_height="35dp"
+        android:backgroundTint="@color/cinzaf"
+        android:fontFamily="@font/dm_sans"
+        android:maxWidth="190dp"
+        android:textAlignment="center"
+        android:textColor="@color/cinzaf"
+        android:textColorLink="@color/pretof"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.535"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.551" />
+
+    <Button
+        android:id="@+id/definir"
+        android:layout_width="208dp"
+        android:layout_height="41dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="@font/dm_sans"
+        android:text="Definir IP"
+        android:textAllCaps="false"
+        android:textColor="@color/btcor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.324" />
+
+    <Button
+        android:id="@+id/enviar"
+        android:layout_width="208dp"
+        android:layout_height="41dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:fontFamily="@font/dm_sans"
+        android:text="Enviar Mensagem"
+        android:textAllCaps="false"
+        android:textColor="@color/btcor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.536"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.643" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
