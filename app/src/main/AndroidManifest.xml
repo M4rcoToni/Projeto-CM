@@ -24,7 +24,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Alterar"
         tools:targetApi="31">
-
+        <activity
+            android:name=".chat.MainCHAT"
+            android:exported="false" />
         <activity
             android:name=".QRCODE"
             android:exported="false" />

@@ -2,6 +2,7 @@ package com.example.alterar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.text.format.Formatter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.alterar.chat.MainCHAT;
 
 import net.glxn.qrgen.android.QRCode;
 
@@ -22,7 +25,9 @@ public class QRCODE extends AppCompatActivity {
     private ImageView qrcode;
     boolean conecta;
     private TextView txt;
+    private TextView testefrag;
     static MyThread cliente;
+    String dados ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +39,7 @@ public class QRCODE extends AppCompatActivity {
         StrictMode.setThreadPolicy(policy);
 
         txt = findViewById(R.id.mostrar);
-
+        testefrag = findViewById(R.id.textfrag);
         cliente = new MyThread();
         new Thread(cliente).start();
 
@@ -67,17 +72,27 @@ public class QRCODE extends AppCompatActivity {
                 welcomeSocket = new ServerSocket(6791);
                 tcpserver server = new tcpserver();
                 server.start();
-                while (true) {
+               do {
                     Thread.sleep((long)(Math.random() * 10000));
 
                     Socket socketConexao = welcomeSocket.accept();
-                    txt.setText("Conexao realizada");
+                   BufferedReader doCliente = new BufferedReader(new InputStreamReader(socketConexao.getInputStream()));
+                   dados = doCliente.readLine();
+                   txt.setText(dados);
                     conecta = true;
-                    BufferedReader doCliente = new BufferedReader(new InputStreamReader(socketConexao.getInputStream()));
-                }
+
+
+
+                    testefrag.setText(dados);
+                }while (true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
+            if (conecta){
+                Intent chat = new Intent(getApplicationContext(), MainCHAT.class);
+                startActivity(chat);
+            }
+
         }
     }
 }

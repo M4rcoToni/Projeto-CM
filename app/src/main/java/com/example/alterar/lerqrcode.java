@@ -85,10 +85,11 @@ public class lerqrcode extends AppCompatActivity {
         public void run() {
             while(true) {
                 try {
-                    clientSocket = new Socket(ip, 6790);
+                    clientSocket = new Socket("192.168.41.78", 6791);
                     DataOutputStream paraServidor = new DataOutputStream(clientSocket.getOutputStream());
                     BufferedReader doServidor = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                     Thread.sleep((long)(Math.random() * 10000));
+                    paraServidor.writeBytes("teste");
                     clientSocket.close();
                 } catch (Exception e) {
                     //TODO: handle exception
