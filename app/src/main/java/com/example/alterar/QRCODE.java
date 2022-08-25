@@ -8,7 +8,9 @@ import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.text.format.Formatter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,7 +94,18 @@ public class QRCODE extends AppCompatActivity {
                 Intent chat = new Intent(getApplicationContext(), MainCHAT.class);
                 startActivity(chat);
             }
+        }
+    }
 
+    public void CrateText(String e){
+        String[] textArray = {"One", "Two", "Three", "Four"};
+        FrameLayout Layout = new FrameLayout(this);
+        setContentView(Layout);
+        for( int i = 0; i < textArray.length; i++ )
+        {
+            TextView textView = new TextView(this);
+            textView.setText(textArray[i]);
+            Layout.addView(textView);
         }
     }
 }
