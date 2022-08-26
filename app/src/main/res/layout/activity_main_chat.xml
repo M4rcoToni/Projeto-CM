@@ -9,10 +9,29 @@
 
     <FrameLayout
         android:id="@+id/layotfrag"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" >
+        android:layout_width="409dp"
+        android:layout_height="649dp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-2dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <TextView
+            android:id="@+id/textfrag"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="aaaaaa" />
     </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/chat"
+        android:layout_width="375dp"
+        android:layout_height="93dp"
+        android:orientation="vertical"
+
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="637dp">
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

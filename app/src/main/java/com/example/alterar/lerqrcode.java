@@ -10,12 +10,14 @@ import android.os.StrictMode;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
+import com.example.alterar.chat.MainCHAT;
 import com.google.zxing.Result;
 
 import java.io.BufferedReader;
@@ -29,15 +31,16 @@ public class lerqrcode extends AppCompatActivity {
     static MyThread server;
 
     private Socket clientSocket;
-    private String ip;
+    static String ip;
     private CodeScanner Scanner;
+    private EditText enviar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lerqrcode);
         getSupportActionBar().hide();
-
+        enviar = findViewById(R.id.textenviar);
         server = new MyThread();
         new Thread(server).start();
 
@@ -68,7 +71,9 @@ public class lerqrcode extends AppCompatActivity {
             }
         });
     }
-
+    public static String retornaIP(){
+        return ip;
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -80,24 +85,40 @@ public class lerqrcode extends AppCompatActivity {
         Scanner.releaseResources();
         super.onPause();
     }
+    int i= 0;
+
     private class MyThread implements Runnable {
         @Override
         public void run() {
             while(true) {
                 try {
-                    clientSocket = new Socket("192.168.41.78", 6791);
+                    clientSocket = new Socket(ip, 6791);
                     DataOutputStream paraServidor = new DataOutputStream(clientSocket.getOutputStream());
                     BufferedReader doServidor = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+
+                    if (i < 1){
+                        StartChat();
+                        i++;paraServidor.writeBytes("teste");
+                    }
                     Thread.sleep((long)(Math.random() * 10000));
-                    paraServidor.writeBytes("teste");
+                    paraServidor.writeBytes(enviar.getText().toString());
                     clientSocket.close();
+                    server.finalize();
+                    break;
                 } catch (Exception e) {
                     //TODO: handle exception
                     e.printStackTrace();
+                } catch (Throwable throwable) {
+                    throwable.printStackTrace();
                 }
             }
 
         }
+    }
+    public void StartChat(){
+            Intent chat = new Intent(getApplicationContext(), MainCHAT.class);
+            startActivity(chat);
+
     }
 
 }

@@ -10,10 +10,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.alterar.R;
+import com.example.alterar.R;
 
 import androidx.appcompat.app.ActionBar;
 
-import net.glxn.qrgen.android.QRCode;
 
 
 public class MainCHAT extends AppCompatActivity {
@@ -26,13 +26,14 @@ public class MainCHAT extends AppCompatActivity {
         ActionBar actbar= getSupportActionBar(); //resgato o menu
         actbar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS); //comportamento
 
-        ActionBar.Tab tab1 = actbar.newTab().setText("CAM"); //nome
+        ActionBar.Tab tab1 = actbar.newTab().setText("CHAT"); //nome
         tab1.setTabListener(new MyTabListener( new Fragment1())); //add evento
         actbar.addTab(tab1);
 
-        ActionBar.Tab tab2 = actbar.newTab().setText("CHAT"); //nome
+        ActionBar.Tab tab2 = actbar.newTab().setText("CAM"); //nome
         tab2.setTabListener(new MyTabListener( new Fragment2())); //add evento
         actbar.addTab(tab2); // add na acction bar
+
     }
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
