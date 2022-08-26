@@ -41,7 +41,9 @@ public class MainLogin extends AppCompatActivity  implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        if(edlogin.getText().toString() != "" && edsenha.getText().toString() != ""){
+        if(edlogin.getText().toString().equals("") && edsenha.getText().toString().equals("")){
+            Toast.makeText(this, "Preencha os dados!!!", Toast.LENGTH_LONG).show();
+        }else{
             if(v.getId()==R.id.crirlogin){
                 Login e = new Login();
                 e.setLogin(edlogin.getText().toString().trim());
@@ -64,11 +66,7 @@ public class MainLogin extends AppCompatActivity  implements View.OnClickListene
                     System.out.println("ID: " + elista.get(i).getId() + "  Nome: " + elista.get(i).getLogin() + "  Curso: " + elista.get(i).getSenha());
                 }
 
-
             }
-        }else{
-            Toast.makeText(this, "Preencha os dados!!!", Toast.LENGTH_LONG).show();
-
         }
     }
 }

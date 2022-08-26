@@ -1,7 +1,7 @@
 package com.example.alterar.db;
 import java.io.Serializable;
 
-public class Login implements Serializable {
+public class Login implements  Serializable{
     private int id;
     private String login;
     private String senha;
