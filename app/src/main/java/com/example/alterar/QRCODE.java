@@ -89,7 +89,7 @@ public class QRCODE extends AppCompatActivity {
                        StartChat();
                        i++;
                    }
-                   //while(conecta == true){
+                   //while(conecta == true){ oi
 
 
                 }while (true);

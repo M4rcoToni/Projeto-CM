@@ -126,7 +126,11 @@ public class Fragment1 extends Fragment implements View.OnClickListener  {
                         array += enviar+"\n";
                         enviar="";
                         recebetxt.setText(array);
-                    }
+                    }///gfdg
+                    ///dfg//
+                    //gdf
+
+
                     clientSocket.close();
                 } catch (Throwable e) {
                     //TODO: handle exception
