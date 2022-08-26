@@ -92,7 +92,7 @@ public class lerqrcode extends AppCompatActivity {
         public void run() {
             while(true) {
                 try {
-                    clientSocket = new Socket(ip, 6791);
+                   // clientSocket = new Socket(ip, 6791);
                     DataOutputStream paraServidor = new DataOutputStream(clientSocket.getOutputStream());
                     BufferedReader doServidor = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 

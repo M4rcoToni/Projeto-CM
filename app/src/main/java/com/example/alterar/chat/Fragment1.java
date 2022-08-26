@@ -10,8 +10,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -84,7 +87,7 @@ public class Fragment1 extends Fragment implements View.OnClickListener  {
         super.onViewCreated(view, savedInstanceState);
         txt = view.findViewById(R.id.textfrag);
         txtenviar = view.findViewById(R.id.textenviar);
-        recebetxt = view.findViewById(R.id.recebetexto);
+        recebetxt = view.findViewById(R.id.recebtxt);
         btnenviar = view.findViewById(R.id.enviar);
         btnenviar.setOnClickListener(this);
         cliente = new MyThread();
@@ -101,29 +104,39 @@ public class Fragment1 extends Fragment implements View.OnClickListener  {
             //codigo para guardar
         }
     }
-String ip = lerqrcode.retornaIP();
+    String ip = lerqrcode.retornaIP();
+    private ListView list;
+    List<Mensagens> listaright = new ArrayList<Mensagens>();
+    String array ;
+    String array2;
     private class MyThread implements Runnable {
         @Override
         public void run() {
             do {
 
                 try {
-                    clientSocket = new Socket("192.168.00.107", 6789); //alterar para testes com os celulares
+                    clientSocket = new Socket("192.168.41.84", 6791); //alterar para testes com os celulares
                     paraServidor = new DataOutputStream(clientSocket.getOutputStream());
                     Thread.sleep((long)(Math.random() * 10000));
 
                     BufferedReader doServidor = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                    paraServidor.writeBytes(enviar);
+                    if (enviar.length() >1){
+                        paraServidor.writeBytes(enviar);
+
+                        array += enviar+"\n";
+                        enviar="";
+                        recebetxt.setText(array);
+                    }
                     clientSocket.close();
-                    cliente.finalize();
-                    break;
                 } catch (Throwable e) {
                     //TODO: handle exception
                     e.printStackTrace();
                 }
-                lista = QRCODE.Retornadados();
+                    lista = QRCODE.Retornadados();
+                    array2 ="\n"+lista.toString();
 
-                txt.setText(""+lista.toString());
+                txt.setText(array2);
+
             }while (true);
 
         }

@@ -10,7 +10,6 @@ import android.os.StrictMode;
 import android.text.format.Formatter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +30,7 @@ public class QRCODE extends AppCompatActivity {
     private TextView txt;
     private TextView testefrag;
     static MyThread cliente;
-    public static List<Mensagens> lista = new ArrayList<Mensagens>();
+    public static List<Mensagens> listaright = new ArrayList<Mensagens>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,16 +66,14 @@ public class QRCODE extends AppCompatActivity {
         return ip;
     }
     int i= 0;
+    String array;
     private class MyThread implements Runnable {
         @Override
         public void run() {
             String men = "";
             ServerSocket welcomeSocket = null;
             try {
-                welcomeSocket = new ServerSocket(6791);
-                tcpserver server = new tcpserver();
-                server.start();
-
+                welcomeSocket = new ServerSocket(6789);
                do {
                     Thread.sleep((long)(Math.random() * 10000));
 
@@ -86,7 +83,7 @@ public class QRCODE extends AppCompatActivity {
 
                        men = doCliente.readLine();
                        Mensagens msg = new Mensagens(men);
-                       lista.add(msg);
+                       listaright.add(msg);
                        txt.setText(""+men);
                    if (i < 1){
                        StartChat();
@@ -111,20 +108,8 @@ public class QRCODE extends AppCompatActivity {
 
     public static List<Mensagens> Retornadados(){
 
-        return lista;
+        return listaright;
     }
 
 
-    public void CrateText(String e){
-
-        String[] textArray = {"One", "Two", "Three", "Four"};
-        FrameLayout Layout = new FrameLayout(this);
-        setContentView(Layout);
-        for( int i = 0; i < textArray.length; i++ )
-        {
-            TextView textView = new TextView(this);
-            textView.setText(textArray[i]);
-            Layout.addView(textView);
-        }
-    }
 }
