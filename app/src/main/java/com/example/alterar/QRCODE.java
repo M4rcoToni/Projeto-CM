@@ -22,15 +22,16 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QRCODE extends AppCompatActivity {
     private ImageView qrcode;
-    boolean conecta;
+    private boolean conecta = true;
     private TextView txt;
     private TextView testefrag;
     static MyThread cliente;
-    String dados ;
-
+    public static List<Mensagens> lista = new ArrayList<Mensagens>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,39 +66,57 @@ public class QRCODE extends AppCompatActivity {
 
         return ip;
     }
-
+    int i= 0;
     private class MyThread implements Runnable {
         @Override
         public void run() {
+            String men = "";
             ServerSocket welcomeSocket = null;
             try {
                 welcomeSocket = new ServerSocket(6791);
                 tcpserver server = new tcpserver();
                 server.start();
+
                do {
                     Thread.sleep((long)(Math.random() * 10000));
 
                     Socket socketConexao = welcomeSocket.accept();
+
                    BufferedReader doCliente = new BufferedReader(new InputStreamReader(socketConexao.getInputStream()));
-                   dados = doCliente.readLine();
-                   txt.setText(dados);
-                    conecta = true;
+
+                       men = doCliente.readLine();
+                       Mensagens msg = new Mensagens(men);
+                       lista.add(msg);
+                       txt.setText(""+men);
+                   if (i < 1){
+                       StartChat();
+                       i++;
+                   }
+                   //while(conecta == true){
 
 
-
-                    testefrag.setText(dados);
                 }while (true);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if (conecta){
-                Intent chat = new Intent(getApplicationContext(), MainCHAT.class);
-                startActivity(chat);
-            }
+
         }
     }
+    public void StartChat(){
+            Intent chat = new Intent(getApplicationContext(), MainCHAT.class);
+            startActivity(chat);
+
+    }
+
+    public static List<Mensagens> Retornadados(){
+
+        return lista;
+    }
+
 
     public void CrateText(String e){
+
         String[] textArray = {"One", "Two", "Three", "Four"};
         FrameLayout Layout = new FrameLayout(this);
         setContentView(Layout);
