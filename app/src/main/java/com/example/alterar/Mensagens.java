@@ -12,7 +12,7 @@ public class Mensagens {
         return mensagem;
     }
 
-    public void setMensagem(String mensagem) {this.mensagem = mensagem;}
+    public void setMensagem(String mensagem) {this.mensagem = "\n"+mensagem;}
 
     @Override
     public String toString() {

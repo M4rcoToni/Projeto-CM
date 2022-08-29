@@ -3,12 +3,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fundolimpo"
     tools:context=".chat.Fragment2">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/recebtxt"
+        android:layout_width="190dp"
+        android:layout_height="677dp"
+        android:layout_marginLeft="100dp"
+        android:fontFamily="@font/playfair_display"
+        android:gravity="right"
+        android:text=""
+        android:textSize="30sp" />
 
+    <EditText
+        android:id="@+id/textenviar"
+        android:layout_width="350dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/btnfundo"
+        android:hint="Mensagem"
+        android:fontFamily="@font/playfair_display"
+        android:textColorHint="@color/white"
+        android:paddingLeft="20dp"
+        android:layout_marginBottom="5dp"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/enviar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="300dp"
+        android:background="@drawable/btnfundo"
+        android:text="enviar"
+        />
 </FrameLayout>

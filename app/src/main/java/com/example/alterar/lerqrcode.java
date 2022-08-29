@@ -10,6 +10,7 @@ import android.os.StrictMode;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,14 +27,18 @@ import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class lerqrcode extends AppCompatActivity {
+public class lerqrcode extends AppCompatActivity implements  View.OnClickListener{
     private static final int CAMERA_REQUEST_CODE = 161;
     static MyThread server;
 
     private Socket clientSocket;
     static String ip;
+    static int porta ;
     private CodeScanner Scanner;
     private EditText enviar;
+    private EditText txtip;
+    private EditText txtporta;
+    private Button conectar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,10 @@ public class lerqrcode extends AppCompatActivity {
         setContentView(R.layout.activity_lerqrcode);
         getSupportActionBar().hide();
         enviar = findViewById(R.id.textenviar);
+        txtip = findViewById(R.id.textip);
+        txtporta = findViewById(R.id.textporta);
+        conectar = findViewById(R.id.conectar);
+        conectar.setOnClickListener(this);
         server = new MyThread();
         new Thread(server).start();
 
@@ -60,6 +69,7 @@ public class lerqrcode extends AppCompatActivity {
                     public void run() {
                         Toast.makeText(lerqrcode.this, result.getText(), Toast.LENGTH_SHORT).show();
                         ip= result.getText();
+                        txtip.setText(ip);
                     }
                 });
             }
@@ -74,6 +84,9 @@ public class lerqrcode extends AppCompatActivity {
     public static String retornaIP(){
         return ip;
     }
+    public static int retornaPorta(){
+        return porta;
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -87,21 +100,33 @@ public class lerqrcode extends AppCompatActivity {
     }
     int i= 0;
 
+    @Override
+    public void onClick(View v) {
+        if(txtip.getText().toString().equals("") && txtporta.getText().toString().equals("")){
+            Toast.makeText(lerqrcode.this, "Preencha os dados!", Toast.LENGTH_SHORT).show();
+        }else{
+            ip = (txtip.getText().toString());
+            porta = Integer.parseInt(txtporta.getText().toString());
+            server = new MyThread();
+            new Thread(server).start();
+        }
+
+    }
+
     private class MyThread implements Runnable {
         @Override
         public void run() {
             while(true) {
                 try {
-                   // clientSocket = new Socket(ip, 6791);
+                    clientSocket = new Socket(ip, porta);
                     DataOutputStream paraServidor = new DataOutputStream(clientSocket.getOutputStream());
                     BufferedReader doServidor = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
                     if (i < 1){
                         StartChat();
-                        i++;paraServidor.writeBytes("teste");
+                        i++;paraServidor.writeBytes("Conectado!!");
                     }
-                    Thread.sleep((long)(Math.random() * 10000));
-                    paraServidor.writeBytes(enviar.getText().toString());
+                    Thread.sleep((long)(Math.random() * 1000));
                     clientSocket.close();
                     server.finalize();
                     break;

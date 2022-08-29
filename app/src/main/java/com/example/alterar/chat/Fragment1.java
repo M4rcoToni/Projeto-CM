@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Fragment1 extends Fragment implements View.OnClickListener  {
+public class Fragment1 extends Fragment  {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -72,13 +72,11 @@ public class Fragment1 extends Fragment implements View.OnClickListener  {
     }
 
 
-    List<Mensagens> lista = QRCODE.Retornadados();
+    //List<Mensagens> lista = QRCODE.Retornadados();
     private TextView txt;
     private TextView recebetxt;
     private TextView txtenviar;
-    private Button btnenviar;
     private String enviar;
-
     private MyThread cliente;
     private Socket clientSocket;
     private DataOutputStream paraServidor;
@@ -88,63 +86,37 @@ public class Fragment1 extends Fragment implements View.OnClickListener  {
         txt = view.findViewById(R.id.textfrag);
         txtenviar = view.findViewById(R.id.textenviar);
         recebetxt = view.findViewById(R.id.recebtxt);
-        btnenviar = view.findViewById(R.id.enviar);
-        btnenviar.setOnClickListener(this);
+
         cliente = new MyThread();
         new Thread(cliente).start();
 
     }
 
-    @Override
-    public void onClick(View v) {
-        if(v.getId()==R.id.enviar){
-
-            enviar =(txtenviar.getText().toString());
-            txtenviar.setText("");
-            //codigo para guardar
-        }
-    }
     String ip = lerqrcode.retornaIP();
     private ListView list;
-    List<Mensagens> listaright = new ArrayList<Mensagens>();
-    String array ;
     String array2;
+    String array ;
+
     private class MyThread implements Runnable {
         @Override
         public void run() {
+
             do {
-
                 try {
-                    clientSocket = new Socket("192.168.41.84", 6791); //alterar para testes com os celulares
-                    paraServidor = new DataOutputStream(clientSocket.getOutputStream());
                     Thread.sleep((long)(Math.random() * 10000));
+                    array = QRCODE.Retornadados();
 
-                    BufferedReader doServidor = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                    if (enviar.length() >1){
-                        paraServidor.writeBytes(enviar);
-
-                        array += enviar+"\n";
-                        enviar="";
-                        recebetxt.setText(array);
-                    }///gfdg
-                    ///dfg//
-                    //gdf
-
-
-                    clientSocket.close();
-                } catch (Throwable e) {
-                    //TODO: handle exception
+                    txt.setText(array.replace("null",""));
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                    lista = QRCODE.Retornadados();
-                    array2 ="\n"+lista.toString();
 
-                txt.setText(array2);
 
             }while (true);
 
         }
     }
+
 
 
 }

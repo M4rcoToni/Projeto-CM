@@ -4,7 +4,7 @@
 
     <item android:id="@+id/voltar"
         android:icon="@drawable/ic_launcher_background"
-        android:title="Perfil"
+        android:title="Reiniciar"
         app:showAsAction="never"
         app:actionProviderClass="androidx.appcompat.widget.ShareActionProvider" />
 

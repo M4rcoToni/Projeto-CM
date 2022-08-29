@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.example.alterar.chat.MainCHAT;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,6 +22,7 @@ import java.net.Socket;
 public class MainActivity extends AppCompatActivity {
     private Button ler;
     private Button mostrar;
+    private Button chat;
     static TextView titulo;
     static TextView recebe;
 
@@ -44,12 +47,13 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         // Nao da pra por msotrar nenhum ip na tela recebe.setText("192.168.199.12");
-        Toast.makeText(getApplicationContext(), ip, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), ip, Toast.LENGTH_LONG).show();
 
         //
 
         mostrar = findViewById(R.id.mostrar);
         ler = findViewById(R.id.ler);
+        chat =findViewById(R.id.chat);
         titulo = findViewById(R.id.titulo);
 
         mostrar.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +69,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent ler = new Intent(getApplicationContext(), lerqrcode.class);
                 startActivity(ler);
+            }
+        });
+        chat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent chat = new Intent(getApplicationContext(), MainCHAT.class);
+                startActivity(chat);
             }
         });
 

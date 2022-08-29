@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fundolimpo"
+    android:background="@color/padrao"
     tools:context=".chat.MainCHAT">
 
     <FrameLayout
@@ -15,23 +15,19 @@
         tools:layout_editor_absoluteX="-2dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <TextView
-            android:id="@+id/textfrag"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="aaaaaa" />
     </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/chat"
-        android:layout_width="375dp"
-        android:layout_height="93dp"
-        android:orientation="vertical"
-
+    <EditText
+        android:id="@+id/ip"
+        android:layout_width="403dp"
+        android:layout_height="65dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="14dp"
+        android:gravity="center"
+        android:text="IP"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layotfrag"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="637dp">
-
-    </LinearLayout>
+        tools:layout_editor_absoluteX="-2dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
