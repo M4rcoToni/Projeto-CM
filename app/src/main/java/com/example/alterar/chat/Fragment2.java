@@ -84,7 +84,8 @@ public class Fragment2 extends Fragment implements  View.OnClickListener{
     private TextView txtenviar;
     private Button btnenviar;
     private String enviar;
-
+    String ip;
+    int porta;
     private MyThread cliente;
     private Socket clientSocket;
     private DataOutputStream paraServidor;
@@ -95,6 +96,8 @@ public class Fragment2 extends Fragment implements  View.OnClickListener{
         recebetxt = view.findViewById(R.id.recebtxt);
         btnenviar = view.findViewById(R.id.enviar);
         btnenviar.setOnClickListener(this);
+        ip = lerqrcode.retornaIP();
+        porta = lerqrcode.retornaPorta();
         cliente = new MyThread();
         new Thread(cliente).start();
 
@@ -109,8 +112,7 @@ public class Fragment2 extends Fragment implements  View.OnClickListener{
             //codigo para guardar
         }
     }
-    String ip = lerqrcode.retornaIP();
-    int porta = lerqrcode.retornaPorta();
+
     private ListView list;
     String array2;    List<Mensagens> listaright = new ArrayList<Mensagens>();
     String array ;

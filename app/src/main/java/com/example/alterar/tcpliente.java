@@ -37,7 +37,7 @@ public class tcpliente extends Thread{
         while(true){
             try {
                 String texto = read.nextLine();
-                Socket clientSocket = new Socket("192.168.0.110",6789);///"192.168.41.78"10.0.2.16
+                Socket clientSocket = new Socket("192.168.40.210",6789);///"192.168.41.78"10.0.2.16
                 DataOutputStream paraServidor = new DataOutputStream(clientSocket.getOutputStream());
                 BufferedReader doServidor = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 paraServidor.writeBytes(texto+"\n");
